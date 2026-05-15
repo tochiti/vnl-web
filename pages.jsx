@@ -3,6 +3,20 @@
 const { useState, useEffect, useMemo, useRef } = React;
 const D = window.VNL_DATA;
 
+/* ── Service background images (Unsplash CDN) ─────────── */
+const SVC_IMAGES = [
+  "photo-1494412574643-ff11b0a5c1c3", // 01 Freight Fwd — containers
+  "photo-1436491865332-7a61a109cc05", // 02 Shipping/Air — airplane
+  "photo-1554224155-6726b3ff858f",    // 03 Documentation
+  "photo-1486325212027-8081e485255e", // 04 IDEC — building
+  "photo-1578575437130-527eed3abbec", // 05 Bond — cargo ship
+  "photo-1504307651254-35680f356dfd", // 06 TI — industrial
+  "photo-1519003722824-194d4455a60c", // 07 Transport — truck
+  "photo-1553413077-190dd305871c",    // 08 HS Code — warehouse
+  "photo-1542744173-8e7e53415bb0",    // 09 Consultation — meeting
+  "photo-1524178232363-1fb2b075b655", // 10 Training — classroom
+];
+
 /* ── Client data with real logos where available ──────── */
 const CLIENTS = [
   { mono: "TE", name: "TotalEnergies EP Nigeria",  sub: "Trans-Amadi · PH",   color: "#C41533", logo: "https://corporate.totalenergies.ng/themes/custom/butterfly_theme/logo.svg" },
@@ -133,28 +147,28 @@ const Home = ({ go }) => (
         {/* Hero visual mosaic */}
         <div className="hero-visual fade-in d3">
           <div className="hero-visual-content">
-            <div className="hv-cell">
+            <div className="hv-cell has-img" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1519003722824-194d4455a60c?w=600&q=75&auto=format&fit=crop')" }}>
               <div className="num">01 / SHIP</div>
               <div>
                 <div className="big" style={{ color: "var(--accent-red)" }}>FTL</div>
                 <div className="lbl">Full-truck and heavy-lift haulage with escorted security routing.</div>
               </div>
             </div>
-            <div className="hv-cell">
+            <div className="hv-cell has-img" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1566676838420-0f8e7ce70dcc?w=600&q=75&auto=format&fit=crop')" }}>
               <div className="num">02 / CLEAR</div>
               <div>
                 <div className="big" style={{ color: "var(--accent-blue)" }}>PAAR</div>
                 <div className="lbl">Pre-Arrival Assessment Report filed and cleared on time.</div>
               </div>
             </div>
-            <div className="hv-cell">
+            <div className="hv-cell has-img" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=600&q=75&auto=format&fit=crop')" }}>
               <div className="num">03 / DEFER</div>
               <div>
                 <div className="big" style={{ color: "var(--accent-red)" }}>BOND</div>
                 <div className="lbl">Customs bonds that defer duty and unlock temporary importation.</div>
               </div>
             </div>
-            <div className="hv-cell">
+            <div className="hv-cell has-img" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1553413077-190dd305871c?w=600&q=75&auto=format&fit=crop')" }}>
               <div className="num">04 / ADVISE</div>
               <div>
                 <div className="big" style={{ color: "var(--accent-blue)" }}>HS·CODE</div>
@@ -461,21 +475,20 @@ const Services = ({ go }) => {
         </div>
       </section>
 
-      {/* Full service list */}
+      {/* Service image card grid */}
       <section className="section">
         <div className="shell">
-          <div className="services-list">
+          <div className="service-img-grid">
             {D.services.map((s, i) => (
               <div
-                className="service-row"
                 key={s.n}
-                onMouseEnter={() => setActive(i)}
-                onMouseLeave={() => setActive(null)}
+                className="service-img-card"
+                style={{ backgroundImage: `url('https://images.unsplash.com/${SVC_IMAGES[i]}?w=700&q=75&auto=format&fit=crop')` }}
               >
-                <div className="service-num">— {s.n}</div>
-                <div className="service-name">{s.title}</div>
-                <div className="service-desc">{s.desc}</div>
-                <div className="arrow"><Icon name={s.icon} size={16} /></div>
+                <div className="sic-num">{s.n}</div>
+                <div className="sic-icon"><Icon name={s.icon} size={20} /></div>
+                <div className="sic-title">{s.title}</div>
+                <div className="sic-short">{s.short}</div>
               </div>
             ))}
           </div>

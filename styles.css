@@ -118,13 +118,15 @@ h1, h2, h3, h4, h5 { margin: 0; }
 }
 .nav-logo { display: flex; align-items: center; cursor: pointer; }
 
-/* Logo — background applied directly to img for dark mode PNG support */
+/* Logo — blend mode removes white PNG background without requiring transparent PNG */
 .nav-logo-img {
   height: 36px; width: auto; display: block;
-  background: var(--logo-bg);
-  border-radius: var(--logo-radius);
-  padding: var(--logo-pad);
-  transition: background .3s;
+  mix-blend-mode: multiply;
+  transition: filter .3s;
+}
+[data-theme="dark"] .nav-logo-img {
+  mix-blend-mode: normal;
+  filter: invert(1) hue-rotate(180deg);
 }
 
 /* Brand wordmark split — VITAL (red) + AID (blue) */
@@ -213,7 +215,7 @@ h1, h2, h3, h4, h5 { margin: 0; }
 
 .hero-kicker-row {
   display: flex; justify-content: space-between; align-items: center;
-  margin-bottom: 64px; padding-bottom: 20px;
+  margin-bottom: 52px; padding-bottom: 20px;
   border-bottom: 1px solid var(--line);
 }
 .hero-kicker-row .meta {
@@ -267,7 +269,7 @@ h1, h2, h3, h4, h5 { margin: 0; }
   margin-top: 72px; position: relative;
   border-radius: 20px 20px 0 0; overflow: hidden;
   border: 1px solid var(--line); border-bottom: none;
-  background: var(--surface); height: 540px;
+  background: var(--surface); height: 480px;
   box-shadow: var(--shadow-xl);
 }
 .hero-visual::before {
@@ -300,13 +302,27 @@ h1, h2, h3, h4, h5 { margin: 0; }
   background: var(--surface); padding: 28px;
   display: flex; flex-direction: column; justify-content: space-between;
   color: var(--text); position: relative; overflow: hidden;
+  background-size: cover; background-position: center;
 }
+/* Bottom accent line (::before) */
 .hv-cell::before {
-  content: ""; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+  content: ""; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; z-index: 3;
   background: linear-gradient(90deg, var(--accent-red), var(--accent-blue));
   opacity: 0; transition: opacity .3s;
 }
 .hv-cell:hover::before { opacity: 1; }
+/* Dark gradient overlay for image cells (::after) */
+.hv-cell::after {
+  content: ""; position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(180deg, rgba(4,8,18,.22) 0%, rgba(4,8,18,.78) 55%, rgba(4,8,18,.96) 100%);
+  opacity: 0; transition: opacity .4s;
+}
+.hv-cell.has-img::after { opacity: 1; }
+/* Text above overlay */
+.hv-cell .num, .hv-cell .big, .hv-cell .lbl { position: relative; z-index: 2; }
+.hv-cell.has-img .num { color: rgba(240,237,230,.5); }
+.hv-cell.has-img .big, .hv-cell.has-img .lbl { color: #F0EDE6 !important; }
+/* Keyword text */
 .hv-cell .num { font-family: "JetBrains Mono", monospace; font-size: 11px; color: var(--mute); letter-spacing: 0.18em; }
 .hv-cell .big { font-family: "Sora", sans-serif; font-size: 44px; font-weight: 800; letter-spacing: -0.045em; line-height: 1; }
 .hv-cell .lbl { font-size: 12px; color: var(--text-soft); line-height: 1.45; margin-top: 4px; }
@@ -320,12 +336,12 @@ h1, h2, h3, h4, h5 { margin: 0; }
 }
 .hero-mark-logo {
   height: 28px; width: auto;
-  background: var(--logo-bg); border-radius: var(--logo-radius); padding: 3px 8px;
+  filter: invert(1) hue-rotate(180deg);
 }
 
 /* ── Sections ───────────────────────────────────────────── */
 .section {
-  padding: 100px 0; border-top: 1px solid var(--line);
+  padding: 88px 0; border-top: 1px solid var(--line);
   position: relative;
 }
 .section.with-image { padding: 0; border: none; }
@@ -432,6 +448,36 @@ h1, h2, h3, h4, h5 { margin: 0; }
   .service-row { grid-template-columns: 48px 1fr 40px; }
   .service-desc { display: none; }
 }
+
+/* ── Service image cards ───────────────────────────────── */
+.service-img-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+}
+.service-img-card {
+  position: relative; border-radius: 16px; overflow: hidden;
+  height: 320px; display: flex; flex-direction: column;
+  justify-content: flex-end; padding: 24px;
+  background-size: cover; background-position: center;
+  transition: transform .35s;
+}
+.service-img-card::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(4,8,18,.08) 0%, rgba(4,8,18,.68) 50%, rgba(4,8,18,.94) 100%);
+}
+.service-img-card:hover { transform: translateY(-5px); }
+.service-img-card > * { position: relative; z-index: 1; }
+.sic-num {
+  font-family: "JetBrains Mono", monospace; font-size: 10px; letter-spacing: .18em;
+  color: rgba(240,237,230,.45); margin-bottom: auto;
+}
+.sic-icon { margin-bottom: 10px; opacity: .75; color: #F0EDE6; }
+.sic-title {
+  font-family: "Sora", sans-serif; font-size: 17px; font-weight: 700;
+  letter-spacing: -.025em; margin-bottom: 5px; color: #F0EDE6;
+}
+.sic-short { font-size: 12.5px; line-height: 1.5; color: rgba(240,237,230,.68); }
+@media (max-width: 900px) { .service-img-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .service-img-grid { grid-template-columns: 1fr; } .service-img-card { height: 260px; } }
 
 /* ── Feature cards ─────────────────────────────────────── */
 .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 20px; overflow: hidden; }
@@ -693,7 +739,8 @@ h1, h2, h3, h4, h5 { margin: 0; }
 @keyframes chatSlideIn { from { opacity: 0; transform: translateY(16px) scale(.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
 @media (max-width: 480px) { .chat-panel { right: 12px; left: 12px; width: auto; bottom: 88px; } .chat-bubble { right: 18px; bottom: 18px; } }
 .chat-header { padding: 16px 20px; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 12px; }
-.chat-header-logo { height: 28px; width: auto; background: #fff; padding: 3px 8px; border-radius: 6px; }
+.chat-header-logo { height: 28px; width: auto; border-radius: 6px; mix-blend-mode: multiply; }
+[data-theme="dark"] .chat-header-logo { mix-blend-mode: normal; filter: invert(1) hue-rotate(180deg); }
 .chat-header-title { font-family: "Sora", sans-serif; font-size: 14px; font-weight: 600; color: var(--text); letter-spacing: -0.01em; }
 .chat-header-sub { font-size: 11.5px; color: var(--mute); }
 .chat-close { margin-left: auto; width: 28px; height: 28px; border-radius: 999px; display: flex; align-items: center; justify-content: center; color: var(--text-soft); background: var(--surface-2); transition: background .2s; }
