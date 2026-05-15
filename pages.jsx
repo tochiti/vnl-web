@@ -13,6 +13,7 @@ const CLIENTS = [
   { mono: "BO", name: "Biddy Ossa Enterprises",    sub: "Lekki · Lagos",      color: "#CA8A04", logo: "https://biddyosa.com/assets/images/logo.png" },
   { mono: "OL", name: "Opticom Leasing Nigeria",   sub: "Port Harcourt",      color: "#0891B2", logo: null },
   { mono: "WL", name: "William Lloyds Technical",  sub: "Port Harcourt",      color: "#C41533", logo: null },
+  { mono: "FP", name: "Felpet Nigeria Ltd",        sub: "Port Harcourt",      color: "#16A34A", logo: null },
   { mono: "WA", name: "West Atlantic Shipyard",    sub: "OGFZ · Onne",        color: "#1B3FD8", logo: "https://was-shipyard.com/wp-content/uploads/2022/11/was-logo-80h-1.png" },
 ];
 
@@ -618,11 +619,11 @@ const Leadership = ({ go }) => (
     <SubHero
       idx="VNL / 040"
       label="Leadership"
-      title={`Operators who have spent <span class="italic accent-red">a career</span> at the dockside.`}
-      lead="The key staff positions of Vitalaid are held by dedicated, result-oriented professionals with deep tenure across oil & gas logistics, supply chain consultancy, and customs brokerage."
+      title={`Expertise built across <span class="italic accent-red">four decades</span> in the field.`}
+      lead="Sir Joshua I. Ahuama, KSC has led Vitalaid Nigeria Limited since 2005, building on a career in freight forwarding, customs brokerage, and supply chain management that began in 1982."
       meta={[
-        { k: "Senior team", v: "6" },
-        { k: "Avg. tenure", v: "20+ yrs" },
+        { k: "Experience", v: "40+ yrs" },
+        { k: "Credentials", v: "FNIS · FIEOM · CITLS" },
       ]}
     />
 
@@ -640,22 +641,26 @@ const Leadership = ({ go }) => (
               Sir Joshua I. <span style={{ fontFamily: "Cormorant Garant", fontStyle: "italic", fontWeight: 400 }}>Ahuama,</span> KSC
             </h2>
             <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 20 }}>
-              <span className="chip red">MD · 25+ yrs</span>
+              <span className="chip red">40+ yrs</span>
               <span className="chip blue">M.Sc · MBA</span>
-              <span className="chip red">FNIS · CMCILT</span>
+              <span className="chip red">FNIS · FIEOM</span>
               <span className="chip blue">CITLS · RFF</span>
             </div>
             <p style={{ fontSize: 16.5, lineHeight: 1.65, color: "var(--text-soft)", maxWidth: 540 }}>
-              Over 25 years of management experience across freight forwarding,
-              customs brokerage, global supply chain management, and free-trade-zone
-              consultancy — backed by academic depth in maritime management
-              technology and project management.
+              Over 40 years of continuous practice in freight forwarding, customs brokerage,
+              global supply chain management, and free-trade-zone consultancy — backed by
+              graduate degrees in transport management technology, project management, and
+              ongoing doctoral research in maritime management technology. Currently serving
+              as South Eastern Zone Coordinator of the Association of Nigerian Licensed
+              Customs Agents (ANLCA).
             </p>
             <div style={{ marginTop: 28, borderTop: "1px solid var(--line)" }}>
               {[
-                ["Education",    "M.Sc Transport Mgt. Technology · MBA Project Mgt., FUTO · B.Sc Accounting, UNIPORT"],
-                ["Memberships",  "FNIS · CMCILT · RFF · CITLS"],
-                ["Service",      "Former ANLCA Oil &amp; Gas Free Zone Chapter Chairman; active industry trainer"],
+                ["Education",    "M.Sc Transport Mgt. Technology · MBA Project Mgt. Technology, FUTO · B.Sc Accounting, UNIPORT · PhD Maritime Mgt. Technology (in progress, FUTO)"],
+                ["Memberships",  "FNIS · FIEOM · CMLT · Associate Member ITA · Member PMI USA · CITLS · RFF (CRFFN)"],
+                ["ANLCA",        "South Eastern Zone Coordinator (Sept 2023–present) · Oil &amp; Gas Free Zone Chapter Chairman (2008–2014)"],
+                ["Publications", "2 peer-reviewed papers — Journal of Science &amp; Technology Research · Journal of Business Administration and Management (2010)"],
+                ["Teaching",     "12+ years — OAU/Multimix, NITT Zaria/Multimix, NOUN/Multimix (CITLS, Freight Forwarding, Supply Chain Management)"],
               ].map(([k, v]) => (
                 <div className="kv" key={k}>
                   <div className="k">{k}</div>
@@ -668,38 +673,15 @@ const Leadership = ({ go }) => (
       </div>
     </section>
 
-    {/* Senior team */}
-    <section className="section" style={{ background: "var(--surface)" }}>
-      <div className="shell">
-        <div className="section-head">
-          <Eyebrow>VNL / 042 — Senior team</Eyebrow>
-          <div className="section-title">A roster built for <span className="italic">long-cycle operations.</span></div>
-        </div>
-        <div>
-          {D.team.map((m, i) => (
-            <div className="staff-row" key={i}>
-              <div className="staff-num">{String(i + 1).padStart(2, "0")}</div>
-              <div>
-                <div className="staff-name">{m.name}</div>
-                <div className="mono" style={{ fontSize: 10.5, color: "var(--mute)", textTransform: "uppercase", letterSpacing: ".14em", marginTop: 4 }}>{m.role}</div>
-              </div>
-              <div className="staff-role">{m.qual}</div>
-              <div className="staff-exp">{m.exp}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
     <section className="section">
       <div className="shell">
         <div className="slogan">
-          Experience measured in <span className="italic">decades,</span><br />
-          not <span style={{ color: "var(--accent-red)" }}>job titles.</span>
+          Four decades of field experience —<br />
+          in every port, <span style={{ color: "var(--accent-red)" }}>at every border.</span>
         </div>
         <div style={{ marginTop: 40 }}>
           <button className="btn btn-primary" onClick={() => go("contact")}>
-            Talk to the team <span className="btn-arrow"><Icon name="arrow-right" size={12} /></span>
+            Talk to the MD <span className="btn-arrow"><Icon name="arrow-right" size={12} /></span>
           </button>
         </div>
       </div>

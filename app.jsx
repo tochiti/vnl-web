@@ -110,7 +110,7 @@ function Footer({ go }) {
     <footer className="footer">
       <div className="shell">
         <div className="footer-tag">
-          V<span className="o">i</span>talaid<span className="t">.</span>
+          <span className="vital">VITAL</span><span className="aid">AID</span><span className="t">.</span>
         </div>
         <div className="footer-grid">
           <div>
@@ -150,14 +150,22 @@ function Footer({ go }) {
 }
 
 /* ── ChatBot ─────────────────────────────────────────── */
+const CTX_NAV = {
+  services:   { label: "View all services →",  id: "__services" },
+  company:    { label: "About Vitalaid →",      id: "__about" },
+  leadership: { label: "Meet the MD →",         id: "__leadership" },
+  experience: { label: "About Vitalaid →",      id: "__about" },
+};
+
 function ChatBot({ go }) {
   const [open, setOpen] = useState(false);
   const [history, setHistory] = useState([]);
   const [options, setOptions] = useState(null);
+  const [ctx, setCtx] = useState(null);
   const bodyRef = useRef(null);
 
   const GREETING = {
-    text: "Hi — I'm the Vitalaid guide. How can I help you today?",
+    text: "Hi — I'm the Vitalaid guide. Ask about our services, the company, or the Managing Director.",
     opts: D.faq.map(item => ({ label: item.label, id: item.id })),
   };
 
@@ -180,6 +188,8 @@ function ChatBot({ go }) {
     const item = topItem || deepItem;
     if (!item) return;
 
+    if (topItem) setCtx(topItem.id);
+
     setHistory(h => [
       ...h,
       { role: "user", text: item.label },
@@ -198,20 +208,27 @@ function ChatBot({ go }) {
     if (item.children && item.children.length) {
       setOptions(item.children.map(c => ({ label: c.label, id: c.id })));
     } else {
+      const navOpt = CTX_NAV[ctx];
       setOptions([
+        ...(navOpt ? [navOpt] : []),
         { label: "Back to main menu", id: "__reset" },
-        { label: "Contact us →", id: "__contact" },
+        { label: "Contact us →",      id: "__contact" },
       ]);
     }
   };
 
   const handleOpt = (id) => {
-    if (id === "__reset") { reset(); return; }
-    if (id === "__contact") { go("contact"); setOpen(false); reset(); return; }
+    if (id === "__reset")      { reset(); return; }
+    if (id === "__contact")    { go("contact");    setOpen(false); reset(); return; }
+    if (id === "__services")   { go("services");   setOpen(false); reset(); return; }
+    if (id === "__about")      { go("about");      setOpen(false); reset(); return; }
+    if (id === "__leadership") { go("leadership"); setOpen(false); reset(); return; }
+    if (id === "__companies")  { go("companies");  setOpen(false); reset(); return; }
     pick(id);
   };
 
   const reset = () => {
+    setCtx(null);
     setHistory([{ role: "bot", text: GREETING.text }]);
     setOptions(GREETING.opts);
   };

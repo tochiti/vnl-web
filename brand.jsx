@@ -1,19 +1,20 @@
-/* Real logo image + icon set */
-
-/* Note: for a fully transparent background in dark mode, replace assets/vnl_logo.png
-   with a version that has a transparent background (assets/vnl_logo_transparent.png) */
-const VLogoMark = ({ size = 34 }) => (
+/* Icon mark + styled wordmark */
+const VLogoMark = ({ size = 30 }) => (
   <img
-    src="assets/vnl_logo.png"
-    alt="Vitalaid Nigeria Limited"
+    src="assets/vnl_mark.png"
+    alt="Vitalaid"
     className="nav-logo-img"
     style={{ height: size, width: "auto" }}
+    onError={e => { e.target.src = "assets/vnl_logo.png"; e.target.onError = null; }}
   />
 );
 
 const VLogoWord = () => (
-  <div className="nav-logo">
-    <VLogoMark size={34} />
+  <div className="nav-logo" style={{ display: "flex", alignItems: "center", gap: 9 }}>
+    <VLogoMark size={30} />
+    <span className="brand-word">
+      <span className="brand-vital">VITAL</span><span className="brand-aid">AID</span>
+    </span>
   </div>
 );
 
