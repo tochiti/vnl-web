@@ -1,25 +1,19 @@
-/* Refined diamond logo mark + icon set */
+/* Real logo image + icon set */
 
 const VLogoMark = ({ size = 34 }) => (
-  <svg width={size} height={size} viewBox="0 0 100 100" fill="none">
-    <g transform="translate(50 50) rotate(45)">
-      {/* Upper-left + upper-right arms — red */}
-      <path d="M-34 -34 L34 -34 L34 -8 L12 -8 L12 -12 L-12 -12 L-12 -8 L-34 -8 Z" fill="var(--accent-red)" />
-      {/* Lower-left + lower-right arms — blue */}
-      <path d="M-34 34 L34 34 L34 8 L12 8 L12 12 L-12 12 L-12 8 L-34 8 Z" fill="var(--accent-blue)" />
-      {/* Center diamond */}
-      <rect x="-8" y="-8" width="16" height="16" fill="var(--accent-red)" />
-    </g>
-  </svg>
+  <div className="nav-logo-pill">
+    <img
+      src="assets/vnl_logo.png"
+      alt="Vitalaid Nigeria Limited"
+      className="nav-logo-img"
+      style={{ height: size + 2, width: "auto", display: "block" }}
+    />
+  </div>
 );
 
 const VLogoWord = () => (
   <div className="nav-logo">
     <VLogoMark size={34} />
-    <div className="nav-word">
-      VITALAID
-      <span className="tag">NG · EST. 1993</span>
-    </div>
   </div>
 );
 
@@ -56,6 +50,10 @@ const Icon = ({ name, size = 20, stroke = 1.6 }) => {
     case "sun":             return (<svg {...c}><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>);
     case "moon":            return (<svg {...c}><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>);
     case "chat":            return (<svg {...c}><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>);
+    case "check":           return (<svg {...c}><path d="M20 6 9 17l-5-5"/></svg>);
+    case "star":            return (<svg {...c}><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>);
+    case "zap":             return (<svg {...c}><polygon points="13,2 3,14 12,14 11,22 21,10 12,10"/></svg>);
+    case "shield":          return (<svg {...c}><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>);
     default: return null;
   }
 };

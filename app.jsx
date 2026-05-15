@@ -229,9 +229,7 @@ function ChatBot({ go }) {
       {open && (
         <div className="chat-panel">
           <div className="chat-header">
-            <div className="chat-header-mark">
-              <VLogoMark size={18} />
-            </div>
+            <img className="chat-header-logo" src="assets/vnl_logo.png" alt="Vitalaid" />
             <div>
               <div className="chat-header-title">Vitalaid Guide</div>
               <div className="chat-header-sub">Ask about our services</div>
