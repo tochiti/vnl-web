@@ -11,8 +11,8 @@ window.VNL_DATA = {
 
   facts: [
     { value: "30+", label: "Years in operation", suffix: "yrs", num: 30 },
-    { value: "$500K+", label: "Working capital base" },
     { value: "10", label: "Service capabilities" },
+    { value: "9", label: "Major client organisations" },
     { value: "25+", label: "Yrs avg. leadership tenure" },
   ],
 
@@ -75,9 +75,9 @@ window.VNL_DATA = {
     },
     {
       n: "09",
-      title: "Free Consultancy",
-      short: "On-call advisory at no charge.",
-      desc: "Open access to our experience for resolving practical supply chain bottlenecks — by call or site visit.",
+      title: "Expert Consultation",
+      short: "On-call advisory for supply chain decisions.",
+      desc: "Direct access to 30 years of field experience for resolving logistics bottlenecks, procurement decisions, and route planning — by call or site visit.",
       icon: "waves",
     },
     {
@@ -143,7 +143,7 @@ window.VNL_DATA = {
       children: [
         { id: "clients",  label: "Our Clients",    answer: "We serve TotalEnergies, Tenaris Global Services, DMS Nigeria, and others across the oil & gas free zones and commercial sectors.", action: { type: "navigate", page: "companies" } },
         { id: "team",     label: "Our Team",       answer: "Led by Sir Joshua I. Ahuama (MD, 25+ yrs) and a senior team averaging 25 years of industry experience.", action: { type: "navigate", page: "leadership" } },
-        { id: "capital",  label: "Working Capital", answer: "We maintain a working capital base in excess of $500,000, enabling us to settle third-party bills on your behalf to prevent delivery delays.", action: { type: "navigate", page: "about" } },
+        { id: "network",  label: "Our Network",    answer: "Vitalaid is backed by an alliance of specialist logistics firms covering global supply chain management — from origin to final delivery.", action: { type: "navigate", page: "about" } },
       ],
     },
     {

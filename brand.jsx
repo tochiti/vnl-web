@@ -1,14 +1,14 @@
 /* Real logo image + icon set */
 
+/* Note: for a fully transparent background in dark mode, replace assets/vnl_logo.png
+   with a version that has a transparent background (assets/vnl_logo_transparent.png) */
 const VLogoMark = ({ size = 34 }) => (
-  <div className="nav-logo-pill">
-    <img
-      src="assets/vnl_logo.png"
-      alt="Vitalaid Nigeria Limited"
-      className="nav-logo-img"
-      style={{ height: size + 2, width: "auto", display: "block" }}
-    />
-  </div>
+  <img
+    src="assets/vnl_logo.png"
+    alt="Vitalaid Nigeria Limited"
+    className="nav-logo-img"
+    style={{ height: size, width: "auto" }}
+  />
 );
 
 const VLogoWord = () => (
